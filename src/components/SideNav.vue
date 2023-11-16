@@ -67,14 +67,14 @@
                         
                             <div class="flex flex-col items-left p-4 ">
                                 <div class="flex items-center">
-                                <img class="w-12 h-12 mb-3 rounded-full shadow-sm object-cover" alt="Bonnie image"/>
-                                <h5 class="mb-1 ml-4 text-sm font-medium text-gray-900 dark:text-gray-800">  Mtende Mwanza</h5>
+                                <img class="w-12 h-12 mb-3 rounded-full shadow-sm object-cover" alt="image"/>
+                                <h5 class="mb-1 ml-4 text-sm font-medium text-gray-900 dark:text-gray-800">Yolanda</h5>
                                 </div>
                                 <span class="font-semibold text-sm text-gray-500 dark:text-gray-600"> </span>
                                 <span  class="text-sm text-gray-500 dark:text-gray-600"> Okay </span>
                                 <div class="my-5 border-b border-lighter"></div>
                                 
-                                <router-link v-bind:to="'/'" class="flex items-center text-sm w-full bg-lighest py-2 px-2 hover:shadow-md rounded-lg">
+                                <router-link v-bind:to="'/'" class="flex items-center text-sm w-full bg-lighest py-2 px-2 hover:shadow-md hover:border  hover:border-r-1 hover:border-black rounded-lg">
                                     <!-- <ArrowLeftIcon class="h-8 w-8"></ArrowLeftIcon> -->
                                     <component :is="icons.signout" class="h-6 w-6 mr-4 text-left"></component>
                                     Sign Out

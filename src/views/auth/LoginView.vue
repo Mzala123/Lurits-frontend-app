@@ -10,7 +10,7 @@
                         <label class="block text-blueGray-600 text-sm mb-1">
                             Enter username
                         </label>
-                        <input type="email" v-model="email" class="w-full border border-gray-500 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded-sm text-sm shadow focus:outline-none">
+                        <input type="" v-model="username" class="w-full border border-gray-500 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded-sm text-sm shadow focus:outline-none">
                     </div>
                     <div class="relative w-full mb-4">
                         <label class="block text-blueGray-600 text-sm mb-1">
@@ -37,13 +37,8 @@
                    </button>
 
                 </div>
-
-             
-
           </div>
-          <!-- <div class="w-96">
-               hie
-          </div> -->
+    
     </div>
 
 </template>
@@ -52,25 +47,86 @@
 
 import {ref} from "vue"
 import router from "../../router"
+import Swal from 'sweetalert2'
+import axios from 'axios';
+import config  from '../../../config'
+import {useUserStore} from '../../stores/store'
 
 export default{
 
     setup(){
-        const email = ref(null)
+        const username = ref(null)
         const password = ref(null)
         const alert_fill_fields = ref(false)
-        //const userStore = useUserStore()
+        const userStore = useUserStore()
         const loading = ref(false)
 
         const login = ()=>{
-            router.push({path:"/sidenav"})
+            //router.push({path:"/sidenav"})
+            loading.value = true
+            if(!username.value || !password.value){
+                Swal.fire({
+                text:"Please fill in all required fields!",
+                icon:"warning",
+                dangerMode: true
+                })
+                loading.value = false
+            }else{
+                axios
+                  .post(`${config.API_URL}/login`,
+                  {
+                    username: username.value,
+                    password: password.value
+                  }).then((response)=>{
+                     if(response.status === 200){
+                        sessionStorage.setItem("Authorization", response.data.token)
+                        sessionStorage.setItem("user", JSON.stringify(response.data.user))
+                        let user = JSON.parse(sessionStorage.getItem("user"))
+                        let usertype_name = user.usertype_name
+                        let userid = user._id
+
+                     userStore.userId = user._id
+                     userStore.persistUserId();
+                   
+                     sessionStorage.setItem("role", usertype_name)
+                     console.log("the userrole is "+sessionStorage.getItem("role"))
+                     sessionStorage.setItem("userid", userid)
+                     console.log("the userid is "+sessionStorage.getItem("userid"))
+
+                      if(usertype_name ===  'Super Admin'){
+                          router.push({path:"/super_admin_dashboard"})
+                      }
+
+
+                     }
+                  }).catch((error)=>{
+                     const{status} = error.response
+                           if(status === 401){
+                             Swal.fire({
+                                text: "Incorrect credentials!",
+                                icon: "warning",
+                                dangerMode: true,
+                             })
+                        loading.value = false
+                           }else{
+          
+                            Swal.fire({
+                                text: "Check your network connection!",
+                                icon: "warning",
+                                dangerMode: true,
+                             })
+                             loading.value = false
+                         }
+              })
+            }
         }
 
         return{
             login,
-            email,
+            username,
             password,
             loading,
+            alert_fill_fields
             
         }
     }
