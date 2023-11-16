@@ -3,7 +3,7 @@
 
             <div class="w-full  flex justify-between">
                 <div>
-                    <button @click="exportUserList" class="rounded-xl bg-emerald-700 hover:bg-emerald-600 hover:shadow-md w-48 
+                    <button @click="exportUserList" class="rounded-2xl bg-emerald-700 hover:bg-emerald-600 hover:shadow-md w-48 
                     flex items-center text-white py-2 px-2">
                     <DocumentArrowDownIcon class="h-6 w-6 mr-3"></DocumentArrowDownIcon>
                         <p class="text-sm">Export Archived</p> 
@@ -67,6 +67,7 @@ import autoTable from 'jspdf-autotable'
             { text: "Institution Address", value: "institution_address"},
             { text: "Institution Contact no", value: "institution_contact_no"},
             { text: "Institution zonename", value: "institution_zone_name", sortable: true },
+            { text: "Institution code", value: "institution_code", sortable: true },
             { text: "Institution Id", value: "institution_id", sortable: true },
             {text: "Actions", value: "action", sortable: true }
 

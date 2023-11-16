@@ -2,12 +2,12 @@
    <div class="h-screen relative w-screen px-2 py-2 flex bg-slate-100">
        
      <!--Side bar-->
-      <div class="w-80 absolute h-full p-2  transition-all duration-300 top-0 z-50"
+      <div class="w-80 absolute h-full p-2 md:shadow-lg  transition-all duration-300 top-0 z-50"
          :class="[isOpen? 'left-0' : '-left-80']" ref="sidebarTarget">
           <div class="bg-slate-100 rounded-md h-full">
                 <div class="flex justify-start items-center ml-4">
-                      <img src="../assets/school logo.svg" class="h-12 w-12 fill-emerald-700" alt="">
-                      <h1 class="ml-4 text-center font-extrabold text-2xl">LURITS</h1>
+                      <img src="../assets/school logo.svg" class="h-10 w-10 fill-emerald-700" alt="">
+                      <h1 class="ml-4 text-center text-gray-600 font-semibold text-xl">LURITS</h1>
                 </div>
 
                 <div >
