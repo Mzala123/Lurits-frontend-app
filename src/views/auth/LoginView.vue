@@ -60,6 +60,7 @@ export default{
         const alert_fill_fields = ref(false)
         const userStore = useUserStore()
         const loading = ref(false)
+        const newstuff = ref(false)
 
         const login = ()=>{
             //router.push({path:"/sidenav"})
@@ -126,7 +127,7 @@ export default{
             username,
             password,
             loading,
-            alert_fill_fields
+            alert_fill_fields, newstuff
             
         }
     }
