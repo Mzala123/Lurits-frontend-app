@@ -183,8 +183,7 @@
                     User type</label>
                     <select v-model="usertype_name" class="px-3 py-3 placeholder-black text-gray-700 border border-black border-1
                     bg-white rounded text-sm  shadow-sm focus:outline-none w-full ease-linear transition-all duration-150">
-                        <option value="Male">Head Teacher</option>
-                        <!-- <option value="Female">Female</option> -->
+                        <option value="Head Teacher">Head Teacher</option>
                     </select>
                 </div>
             </div>
@@ -263,7 +262,9 @@ export default{
 
 
         const create_institution_admin = ()=>{
-            if(!firstname.value || !nationalId.value || !lastname.value || !usertype_name.value ||
+
+          console.log("user type "+usertype_name.value)
+           if(!firstname.value || !nationalId.value || !lastname.value || !usertype_name.value ||
              !dob.value || !gender.value || !email.value){
                 Swal.fire({
                     text:"Please fill in all required fields!",
@@ -282,7 +283,6 @@ export default{
                     email: email.value,
                     phonenumber: phonenumber.value,
                     dob: dob.value,
-                   // address: address.value,
                     place_residence: place_residence.value,
                     institutionId: institutionId,
                     usertype_name: usertype_name.value,
