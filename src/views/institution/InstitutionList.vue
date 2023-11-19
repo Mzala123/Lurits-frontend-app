@@ -28,9 +28,9 @@
             <template #item-action="{_id}">
 
             <div class="flex">
-            <!-- <router-link :to="'/view_user_details/'+_id">
-            <EyeIcon @click="viewUser(_id)" class="stroke-gray-700 mr-2 h-5 w-5"></EyeIcon>
-            </router-link> -->
+               <router-link :to="'/update_institution/'+_id">
+                  <PencilIcon class="stroke-blue-600 mr-2 h-5 w-5"></PencilIcon>
+              </router-link> 
             </div>
 
             </template>

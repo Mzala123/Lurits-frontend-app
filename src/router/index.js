@@ -5,7 +5,8 @@ import SuperAdminDashboard from '../views/institution/SuperAdminDashboard.vue'
 import InstitutionList from '../views/institution/InstitutionList.vue'
 import InstitutionAdminList from '../views/institution/InstitutionAdminList.vue'
 import CreateInstitution from '../views/institution/CreateInstitution.vue'
- 
+import AddInstitutionAdmin from '../views/institution/AddInstitutionAdmin.vue'
+import UpdateInstitution from '../views/institution/UpdateInstitution.vue'
 
 const routes = [
     {
@@ -36,6 +37,17 @@ const routes = [
                 path:'/super_admin_dashboard',
                 name:'super-admin-dashboard',
                 component: SuperAdminDashboard
+            },
+
+            {
+                path:'/add_institution_admin',
+                name:'add-institution-admin',
+                component: AddInstitutionAdmin
+            },
+            {
+                path:'/update_institution/:id',
+                name:'update-institution',
+                component: UpdateInstitution
             }
 
         ]
