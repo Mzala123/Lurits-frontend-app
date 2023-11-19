@@ -91,8 +91,8 @@
              </div>
 
              <!--middle content-->
-             <div class="bg-white rounded-lg h-full py-2 px-4">
-                   <router-view></router-view>
+             <div class="bg-white rounded-lg h-full py-2 px-4 overflow-y-auto" style="max-height: calc(100vh - 64px);">
+                   <router-view class=""></router-view>
              </div>
              <!-- end of middle content-->
       </div>

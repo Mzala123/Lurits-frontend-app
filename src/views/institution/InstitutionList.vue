@@ -25,11 +25,15 @@
             :search-field="searchField"
             :search-value="searchValue"
             >
-            <template #item-action="{_id}">
+            <template #item-action="{_id, institution_id}">
 
             <div class="flex">
                <router-link :to="'/update_institution/'+_id">
                   <PencilIcon class="stroke-blue-600 mr-2 h-5 w-5"></PencilIcon>
+              </router-link> 
+
+              <router-link :to="'/add_institution_admin/'+institution_id">
+                  <UserPlusIcon class="stroke-gray-600 mr-2 h-5 w-5"></UserPlusIcon>
               </router-link> 
             </div>
 
@@ -48,12 +52,12 @@ import{ref, onMounted, reactive} from 'vue'
 import axios from 'axios'
 import config from '../../../config'
 import Swal from  'sweetalert2'
-import { DocumentArrowDownIcon, TrashIcon, EyeSlashIcon, EyeIcon,PencilIcon, ArchiveBoxArrowDownIcon } from '@heroicons/vue/24/outline';
+import { DocumentArrowDownIcon, UserPlusIcon, EyeSlashIcon, EyeIcon,PencilIcon, ArchiveBoxArrowDownIcon } from '@heroicons/vue/24/outline';
 import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
 
  export default{
-        components:{DocumentArrowDownIcon, TrashIcon, EyeSlashIcon, PencilIcon, EyeIcon, ArchiveBoxArrowDownIcon
+        components:{DocumentArrowDownIcon, UserPlusIcon, EyeSlashIcon, PencilIcon, EyeIcon, ArchiveBoxArrowDownIcon
         },
         setup(){
 
@@ -84,7 +88,6 @@ import autoTable from 'jspdf-autotable'
                   .then((response)=>{
                     institutions.value = response.data
                     is_loading.value = false
-
                   }).catch((error)=>{
                      is_loading.value = false
                   })

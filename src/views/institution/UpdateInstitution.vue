@@ -155,6 +155,7 @@ export default{
                 .get(`${config.API_URL}/read_one_institution/${id}`)
                 .then((response)=>{
                     institution.value = response.data
+                    console.log(institution.value)
                     is_loading.value = false
                 }).catch((error)=>{
                     is_loading.value = false

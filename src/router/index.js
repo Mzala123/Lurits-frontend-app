@@ -40,7 +40,7 @@ const routes = [
             },
 
             {
-                path:'/add_institution_admin',
+                path:'/add_institution_admin/:id',
                 name:'add-institution-admin',
                 component: AddInstitutionAdmin
             },
