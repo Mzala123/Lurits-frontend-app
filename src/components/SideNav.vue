@@ -10,7 +10,7 @@
                       <h1 class="ml-4 text-center text-gray-600 font-semibold text-xl">LURITS</h1>
                 </div>
 
-                <div >
+                <div v-show="user_type === 'Super Admin'"  class="">
                        <div class="ml-3 flex flex-row mt-5 px-4 ">
                             <router-link :to="'/add_institution'" class="rounded-2xl text-white flex font-semibold bg-emerald-700 hover:bg-emerald-600 outline-1 hover:shadow-md px-2 py-2 justify-center items-center w-56">
                                 <PlusIcon class="h-6 w-6 mr-2"></PlusIcon>
@@ -28,6 +28,29 @@
                                     <p class="text-sm font-normal text-left">{{ item.title }}</p>
                             </router-link> 
                         </div>
+                 </div>
+
+
+                <div v-show="user_type === 'Head Teacher'" class="">
+                    <div class="ml-3 flex flex-row mt-5 px-4 ">
+                            <router-link :to="'/create_user'" class="rounded-2xl text-white flex font-semibold bg-emerald-700 hover:bg-emerald-600 outline-1 hover:shadow-md px-2 py-2 justify-center items-center w-56">
+                                <PlusIcon class="h-6 w-6 mr-2"></PlusIcon>
+                                <p class="block text-sm">User</p>
+                            </router-link>
+                    </div>
+
+                    <div class="mt-6 border-t-2">
+                            <router-link @click="name = item.name" :class="`flex items-center focus:outline-none hover:text-emerald-600 hover:border-l-2 border-emerald-500 px-8 py-2 w-full 
+                                hover:bg-emerald-50 mr-auto mb-1 ${name === item.name ? 'text-emerald-600  bg-lighter border-l-2 border-emerald-600' : '' }`"
+                                v-for="item of headTeacher" 
+                                :key="item.name" 
+                                v-bind:to="{name: item.name}">
+                                    <component :is="item.icon" class="h-6 w-6 mr-4 text-left"></component>
+                                    <p class="text-sm font-normal text-left">{{ item.title }}</p>
+                            </router-link> 
+                        </div>
+
+
                 </div>
 
           </div>
@@ -107,6 +130,10 @@ import {ref, onMounted} from 'vue'
 import { QuestionMarkCircleIcon, Cog6ToothIcon,QueueListIcon,UserCircleIcon,ArrowLeftIcon,HomeIcon, Bars3Icon, PlusCircleIcon, PlusIcon } from '@heroicons/vue/24/outline';
 import { onClickOutside } from '@vueuse/core'
 //import {QuestionMarkCircleIcon, Cog6ToothIcon} from  '@heroicons/vue/20/outline'
+import router from '../router';
+import { useUserStore } from '../stores/store';
+import axios from 'axios';
+import config from '../../config'
 
 export default{
     components:{
@@ -119,6 +146,13 @@ export default{
         const user_type =  ref(null)
         const target = ref(null)
         const sidebarTarget = ref(null)
+
+        const userStore = useUserStore()
+        const userId = userStore.getUserId;
+
+        const institutionId = ref(null)
+        const institutionData = ref([])
+
 
         const isOpen = ref(true)
 
@@ -134,7 +168,30 @@ export default{
             
         ]); 
 
+        const headTeacher = ref([
+            {title:'Learners list', icon:QueueListIcon, name:'learner-list'},
+            {title:'Teachers  list', icon:QueueListIcon, name:'teacher-list'},
+          ]
+        )
+
+        const read_user_information =()=>{
+             axios
+             .get(`${config.API_URL}/read_one_user_details/${userId}`)
+             .then((response)=>{
+                  if(response.status === 200){
+                        institutionData.value = response.data
+                        institutionId.value = institutionData.value.userDetails.institution_id
+                        sessionStorage.setItem("institutionId", institutionId.value)
+                        console.log("our id is "+institutionId.value)
+                  }
+             })
+        }
+
         onMounted(()=>{
+            user_type.value = sessionStorage.getItem("role")
+            read_user_information()
+
+            console.log(userId)
 
         })
 
@@ -142,7 +199,8 @@ export default{
             isDropdownOpen,
             user_type,
             users, icons, target, isOpen, sidebarTarget,
-            superAdminMenu
+            superAdminMenu, userId, userStore, headTeacher, read_user_information,
+             institutionId, institutionData
         }
 
     }

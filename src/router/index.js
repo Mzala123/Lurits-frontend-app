@@ -1,12 +1,18 @@
 import { createRouter, createWebHistory } from "vue-router";
 import LoginView from '../views/auth/LoginView.vue'
 import SideNav from '../components/SideNav.vue'
+
 import SuperAdminDashboard from '../views/institution/SuperAdminDashboard.vue'
 import InstitutionList from '../views/institution/InstitutionList.vue'
 import InstitutionAdminList from '../views/institution/InstitutionAdminList.vue'
 import CreateInstitution from '../views/institution/CreateInstitution.vue'
 import AddInstitutionAdmin from '../views/institution/AddInstitutionAdmin.vue'
 import UpdateInstitution from '../views/institution/UpdateInstitution.vue'
+
+import CreateUser from '../views/HeadTeacher/CreateUser.vue'
+import LearnerList from '../views/HeadTeacher/LearnerList.vue'
+import TeacherList from '../views/HeadTeacher/TeacherList.vue'
+
 
 const routes = [
     {
@@ -48,7 +54,24 @@ const routes = [
                 path:'/update_institution/:id',
                 name:'update-institution',
                 component: UpdateInstitution
+            },
+            {
+                path:'/create_user',
+                name:'create-user',
+                component: CreateUser
+            },
+            {
+                path:'/learner_list',
+                name:'learner-list',
+                component: LearnerList
+            },
+            {
+                path:'/teacher_list',
+                name:'teacher-list',
+                component: TeacherList
             }
+
+
 
         ]
     }
