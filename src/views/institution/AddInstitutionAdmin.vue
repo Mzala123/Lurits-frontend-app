@@ -298,7 +298,7 @@ export default{
                         }).then((ok)=>{
                              loading.value = false
                              if(ok){
-                                router.push({path:"/institution_list"})
+                                router.push({path:"/institution_admin_list"})
                              }
                         })
                     }
