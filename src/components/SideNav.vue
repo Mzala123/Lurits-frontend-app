@@ -90,11 +90,11 @@
                         
                             <div class="flex flex-col items-left p-4 ">
                                 <div class="flex items-center">
-                                <img class="w-12 h-12 mb-3 rounded-full shadow-sm object-cover" alt="image"/>
-                                <h5 class="mb-1 ml-4 text-sm font-medium text-gray-900 dark:text-gray-800">Yolanda</h5>
+                                <!-- <img class="w-12 h-12 mb-3 rounded-full shadow-sm object-cover" alt="image"/> -->
+                                <h5 class="mb-1 ml-4 text-sm font-medium text-gray-900 dark:text-gray-800">{{ username }}</h5>
                                 </div>
                                 <span class="font-semibold text-sm text-gray-500 dark:text-gray-600"> </span>
-                                <span  class="text-sm text-gray-500 dark:text-gray-600"> Okay </span>
+                                <!-- <span  class="text-sm text-gray-500 dark:text-gray-600"> Okay </span> -->
                                 <div class="my-5 border-b border-lighter"></div>
                                 
                                 <router-link v-bind:to="'/'" class="flex items-center text-sm w-full bg-lighest py-2 px-2 hover:shadow-md hover:border  hover:border-r-1 hover:border-black rounded-lg">
@@ -152,6 +152,7 @@ export default{
 
         const institutionId = ref(null)
         const institutionData = ref([])
+        const username = ref([])
 
 
         const isOpen = ref(true)
@@ -181,6 +182,7 @@ export default{
                   if(response.status === 200){
                         institutionData.value = response.data
                         institutionId.value = institutionData.value.userDetails.institution_id
+                        username.value = institutionData.value.username
                         sessionStorage.setItem("institutionId", institutionId.value)
                         console.log("our id is "+institutionId.value)
                   }
@@ -200,7 +202,7 @@ export default{
             user_type,
             users, icons, target, isOpen, sidebarTarget,
             superAdminMenu, userId, userStore, headTeacher, read_user_information,
-             institutionId, institutionData
+             institutionId, institutionData, username
         }
 
     }

@@ -303,12 +303,16 @@ export default{
                           text: response.data.message,
                           icon: "success"
                       })
-                      // .then((ok)=>{
-                      //      loading.value = false
-                      //      if(ok){
-                      //         router.push({path:"/institution_admin_list"})
-                      //      }
-                      // })
+                      .then((ok)=>{
+                           loading.value = false
+                           if(ok){
+                            if(usertype_name.value === "Learner"){
+                                router.push({path:"/learner_list"})
+                              }else if(usertype_name.value === "Teacher"){
+                                router.push({path:"/teacher_list"})
+                              }
+                           }
+                      })
                   }
               }).catch((error)=>{
                   loading.value = false

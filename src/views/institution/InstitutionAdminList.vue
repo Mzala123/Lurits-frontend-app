@@ -68,8 +68,6 @@ export default {
              { text: "Gender", value: "adminDocs.gender"},
              { text: "Institution Name", value: "userDetails.institution_name", sortable: true },
              { text: "Institution Address", value: "userDetails.institution_address"},
-
-
              ]
              )
 
