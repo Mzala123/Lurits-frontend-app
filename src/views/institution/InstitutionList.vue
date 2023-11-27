@@ -72,7 +72,7 @@ import autoTable from 'jspdf-autotable'
             { text: "Institution Contact no", value: "institution_contact_no"},
             { text: "Institution zonename", value: "institution_zone_name", sortable: true },
             { text: "Institution code", value: "institution_code", sortable: true },
-            { text: "Institution Id", value: "institution_id", sortable: true },
+            // { text: "Institution Id", value: "institution_id", sortable: true },
             {text: "Actions", value: "action", sortable: true }
 
             ])

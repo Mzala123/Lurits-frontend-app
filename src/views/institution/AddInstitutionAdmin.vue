@@ -48,7 +48,7 @@
 
 
 
-          <div class="w-full lg:w-12/12 px-4 pt-6">
+          <!-- <div class="w-full lg:w-12/12 px-4 pt-6">
             <div class="relative w-full mb-3">
               <label
                 class="block text-gray-600 text-sm"
@@ -61,7 +61,7 @@
                 class="px-3 py-3 placeholder-black text-gray-700 border border-black border-1 focus:outline-none rounded text-sm shadow-sm  w-full ease-linear transition-all duration-150"
               />
             </div>
-          </div>
+          </div> -->
   
 
           <div class="w-full lg:w-12/12 px-4 pt-6">
@@ -276,7 +276,7 @@ export default{
                 axios
                    .post(`${config.API_URL}/register`, 
                    {
-                    nationalId: nationalId.value,
+                    // nationalId: nationalId.value,
                     firstname: firstname.value,
                     lastname: lastname.value,
                     gender: gender.value,

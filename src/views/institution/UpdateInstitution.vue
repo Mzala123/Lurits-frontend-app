@@ -12,6 +12,7 @@
           <h1 class="flex items-center text-xl font-semibold px-4 pt-6">
             UPDATE INSTITUTION DETAILS
           </h1>
+          <h1 class="text-gray-600 font-semibold flex items-center ml-4 text-sm">Note: The red star refers to mandatory</h1>
           <div class="w-full lg:w-12/12 px-4 pt-6">
             <div class="relative w-full mb-3">
               <label
@@ -73,6 +74,18 @@
               />
             </div>
           </div>
+
+          <div class="w-full lg:w-12/12 px-4">
+              <div class="relative w-full mb-3">
+                  <label class="block text-gray-600 text-sm mb-2">
+                   Select district <span class="text-red-500">*</span> </label>
+                  <select v-model="institution.institution_district" class="px-3 py-3 placeholder-black text-gray-700 border border-black border-1
+                  bg-white rounded text-sm  shadow-sm focus:outline-none w-full ease-linear transition-all duration-150">
+                      <option v-for="district in districts" :key="district.id" :value="district.name">{{ district.name }}</option>
+                  </select>
+              </div>
+          </div>
+
   
   
           <div class="w-full lg:w-12/12 px-4">
@@ -142,8 +155,18 @@ export default{
          institution_address : ref(null),
          institution_zone_name : ref(null),
          institution_contact_no : ref(null),
-         institution_code : ref(null)
+         institution_code : ref(null),
+         institution_district: ref(null)
        })
+
+      // const institution_district = ref(null)
+        const districts = ref([
+          {id:1, name:'Lilongwe'},
+          {id:2, name:'Dowa'},
+          {id:3, name:'Mzimba'},
+          {id:4, name:'Blantyre'},
+          {id:5, name:'Zomba'}
+        ])
 
 
 
@@ -181,7 +204,8 @@ export default{
                     institution_address : institution.value.institution_address,
                     institution_zone_name : institution.value.institution_zone_name,
                     institution_contact_no : institution.value.institution_contact_no,
-                    institution_code: institution.value.institution_code
+                    institution_code: institution.value.institution_code,
+                    institution_district: institution.value.institution_district
 
                   }).then((response)=>{
                     if(response.status === 200){
@@ -225,7 +249,7 @@ export default{
          })
 
         return{
-            loading, read_one_institution_by_id, institution, update_institution, is_loading
+            loading, read_one_institution_by_id, institution, update_institution, is_loading, districts
 
         }
     }

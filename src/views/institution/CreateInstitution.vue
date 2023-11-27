@@ -7,12 +7,13 @@
           <h1 class="flex items-center text-xl font-semibold px-4 pt-6">
             INSTITUTION DETAILS
           </h1>
+          <h1 class="text-gray-600 font-semibold flex items-center ml-4 text-sm">Note: The red star refers to mandatory</h1>
           <div class="w-full lg:w-12/12 px-4 pt-6">
             <div class="relative w-full mb-3">
               <label
                 class="block text-gray-600 text-sm"
               >
-               Institution Name
+               Institution Name <span class="text-red-500">*</span> 
               </label>
               <input
                 v-model="institution_name"
@@ -26,7 +27,7 @@
           <div class="w-full lg:w-12/12 px-4 pt-6">
             <div class="relative w-full mb-3">
               <label class="block text-gray-600 text-sm">
-             Institution Code
+             Institution Code <span class="text-red-500">*</span> 
               </label>
               <input
                 v-model="institution_code"
@@ -59,7 +60,7 @@
               <label
                 class="block text-gray-600 text-sm"
               >
-               Institution contact number
+               Institution contact number <span class="text-red-500">*</span> 
               </label>
               <input
                  v-model="institution_contact_no"
@@ -68,13 +69,24 @@
               />
             </div>
           </div>
+
+          <div class="w-full lg:w-12/12 px-4">
+              <div class="relative w-full mb-3">
+                  <label class="block text-gray-600 text-sm mb-2">
+                   Select district <span class="text-red-500">*</span> </label>
+                  <select v-model="institution_district" class="px-3 py-3 placeholder-black text-gray-700 border border-black border-1
+                  bg-white rounded text-sm  shadow-sm focus:outline-none w-full ease-linear transition-all duration-150">
+                      <option v-for="district in districts" :key="district.id" :value="district.name">{{ district.name }}</option>
+                  </select>
+              </div>
+          </div>
   
   
           <div class="w-full lg:w-12/12 px-4">
             <label
               class="block text-gray-600 text-sm"
             >
-            Institution Address
+            Institution Address <span class="text-red-500">*</span> 
             </label>
             <textarea
               rows="4"
@@ -135,8 +147,17 @@ export default{
         const institution_contact_no = ref(null)
         const institution_code = ref(null)
 
+        const institution_district = ref(null)
+        const districts = ref([
+          {id:1, name:'Lilongwe'},
+          {id:2, name:'Dowa'},
+          {id:3, name:'Mzimba'},
+          {id:4, name:'Blantyre'},
+          {id:5, name:'Zomba'}
+        ])
+
         const add_institution = ()=>{
-            if(!institution_name.value || !institution_address.value || !institution_contact_no.value){
+            if(!institution_name.value || !institution_address.value || !institution_contact_no.value || !institution_district.value || !institution_code.value){
                 loading.value = true
                 Swal.fire({
                     text:"Please fill in all required fields!",
@@ -153,8 +174,8 @@ export default{
                     institution_address : institution_address.value,
                     institution_zone_name : institution_zone_name.value,
                     institution_contact_no : institution_contact_no.value,
-                    institution_code: institution_code.value
-
+                    institution_code: institution_code.value,
+                    institution_district:institution_district.value
                   }).then((response)=>{
                     if(response.status === 201){
                         Swal.fire({
@@ -191,7 +212,7 @@ export default{
 
         return{
             loading, institution_name, institution_address, institution_contact_no, institution_zone_name, institution_code,
-            add_institution
+            add_institution, institution_district, districts
 
         }
     }
