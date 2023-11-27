@@ -97,7 +97,9 @@ export default{
                       if(usertype_name ===  'Super Admin'){
                           router.push({path:"/super_admin_dashboard"})
                       } else if(usertype_name === 'Head Teacher'){
-                          router.push({path:'/learner_list'})
+                          router.push({path:'/head_dashboard'})
+                      } else if(usertype_name === ''){
+                        
                       }
 
 

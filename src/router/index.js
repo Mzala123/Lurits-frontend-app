@@ -12,6 +12,8 @@ import UpdateInstitution from '../views/institution/UpdateInstitution.vue'
 import CreateUser from '../views/HeadTeacher/CreateUser.vue'
 import LearnerList from '../views/HeadTeacher/LearnerList.vue'
 import TeacherList from '../views/HeadTeacher/TeacherList.vue'
+import HeadDashboard from '../views/HeadTeacher/HeadDashboard.vue'
+import UserSettings from '../views/HeadTeacher/UserSettings.vue'
 
 
 const routes = [
@@ -69,6 +71,16 @@ const routes = [
                 path:'/teacher_list',
                 name:'teacher-list',
                 component: TeacherList
+            },
+            {
+                path:'/head_dashboard',
+                name:'head-dashboard',
+                component:HeadDashboard
+            },
+            {
+                path:'/user_settings',
+                name:'user-settings',
+                component: UserSettings
             }
 
 

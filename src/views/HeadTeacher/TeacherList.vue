@@ -4,7 +4,7 @@
     
     <div class="w-full  flex justify-between">
         <div>
-            <button @click="exportUserList" class="rounded-2xl bg-emerald-700 hover:bg-emerald-600 hover:shadow-md w-48 
+            <button @click="exportTeacherList" class="rounded-2xl bg-emerald-700 hover:bg-emerald-600 hover:shadow-md w-48 
     flex items-center text-white py-2 px-2">
                 <DocumentArrowDownIcon class="h-6 w-6 mr-3"></DocumentArrowDownIcon>
                 <p class="text-sm">Export Archived</p>
@@ -73,6 +73,15 @@
                   {text: "Place of residence", value: "learnerDocs.place_residence", sortable: true },
                   ]
                 )
+
+                const exportTeacherList = ()=>{
+                   const doc = new jsPDF()
+                   const rows = []
+                   teacherList.value.forEach(list=>{
+                     const temp = [list.userDetails.username, list.learnerDocs.nationalId, ]
+                   })
+                }
+
     
     
                 onMounted(()=>{
@@ -95,7 +104,8 @@
                 
                 return{
                     read_teacher_list,
-                    is_loading, searchValue, searchField, institutionId, headers, teacherList
+                    is_loading, searchValue, searchField, institutionId, headers, teacherList,
+                    exportTeacherList
                 }
             
         }

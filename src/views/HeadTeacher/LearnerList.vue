@@ -4,7 +4,7 @@
 
 <div class="w-full  flex justify-between">
     <div>
-        <button @click="exportUserList" class="rounded-2xl bg-emerald-700 hover:bg-emerald-600 hover:shadow-md w-48 
+        <button @click="exportLearnersList" class="rounded-2xl bg-emerald-700 hover:bg-emerald-600 hover:shadow-md w-48 
 flex items-center text-white py-2 px-2">
             <DocumentArrowDownIcon class="h-6 w-6 mr-3"></DocumentArrowDownIcon>
             <p class="text-sm">Export Archived</p>
@@ -63,6 +63,7 @@ export default{
             const searchField = ref("");
             const searchValue = ref("");
             let institutionId = ref(null)
+            let institutionName = ref(null)
 
             const headers = ([
               {text: "Learner code", value: "userDetails.username", sortable: true },
@@ -74,10 +75,32 @@ export default{
               ]
             )
 
+            const exportLearnersList = ()=>{
+                const doc = new jsPDF()
+                const rows = []
+                learnerList.value.forEach(list=>{
+                    const temp = [list.userDetails.username,list.learnerDocs.nationalId, list.learnerDocs.firstname+' '+list.learnerDocs.lastname,
+                     list.learnerDocs.gender, list.learnerDocs.place_residence]
+                    rows.push(temp)
+                })
+                doc.text(institutionName+" Institution",10, 10)
+                doc.text('All learners list', 10, 20)
+                doc.line(0,35,400,35)
+                autoTable(doc, {
+                    head: [['Learner code number', 'National Id', 'Name of learner', 'Gemder', 'Place of residence']],
+                    margin:{top:50},
+                    body:[...rows]
+                })
+               doc.save(institutionName+' Learners list.pdf')
+
+            }
+
 
             onMounted(()=>{
               institutionId = sessionStorage.getItem('institutionId')
+              institutionName = sessionStorage.getItem('institution_name')
               console.log("org id is "+institutionId)
+              console.log("org name "+institutionName)
               read_learner_list()
 
             })
@@ -95,7 +118,8 @@ export default{
             
             return{
                 read_learner_list,
-                learnerList, is_loading, searchValue, searchField, institutionId, headers
+                learnerList, is_loading, searchValue, searchField, institutionId, headers,
+                exportLearnersList, institutionName
             }
         
     }

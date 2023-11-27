@@ -65,18 +65,19 @@
              <div class="h-16 rounded-md p-2">
 
                 <div class="flex justify-between items-center">
-                    <div>
+                    <div class="flex flex-row items-center">
                          <button @click="isOpen = !isOpen">
                             <Bars3Icon class="h-8 w-8"></Bars3Icon>
                          </button>
+                         <h1 class="text-center ml-4 text-2xl font-semibold justify-center">{{ institutionName }}</h1>
                     </div>
 
                     <div class="flex justify-end items-end space-x-4">
-                    <router-link v-bind:to="'/settings'" class="h-8 w-8 rounded-full border-2">
+                    <router-link v-bind:to="'/user_settings'" class="h-8 w-8 rounded-full border-2">
                         <Cog6ToothIcon class="stroke-gray-500"></Cog6ToothIcon>
                     </router-link>
 
-                    <router-link v-bind:to="'/settings'" class="h-8 w-8 rounded-full border-2">
+                    <router-link v-bind:to="''" class="h-8 w-8 rounded-full border-2">
                             <QuestionMarkCircleIcon class="stroke-gray-500"></QuestionMarkCircleIcon>
                     </router-link>
 
@@ -152,6 +153,7 @@ export default{
 
         const institutionId = ref(null)
         const institutionData = ref([])
+        const institutionName = ref(null)
         const username = ref([])
 
 
@@ -170,6 +172,7 @@ export default{
         ]); 
 
         const headTeacher = ref([
+            {title:'Dashboard', icon:HomeIcon, name:'head-dashboard'},
             {title:'Learners list', icon:QueueListIcon, name:'learner-list'},
             {title:'Teachers  list', icon:QueueListIcon, name:'teacher-list'},
           ]
@@ -183,15 +186,19 @@ export default{
                         institutionData.value = response.data
                         institutionId.value = institutionData.value.userDetails.institution_id
                         username.value = institutionData.value.username
+                        institutionName.value = institutionData.value.userDetails.institution_name
                         sessionStorage.setItem("institutionId", institutionId.value)
-                        console.log("our id is "+institutionId.value)
+                        sessionStorage.setItem("institution_name",  institutionName.value)
+                        console.log("our id is "+institutionId.value, institutionData.value)
                   }
              })
         }
 
         onMounted(()=>{
             user_type.value = sessionStorage.getItem("role")
+           
             read_user_information()
+            console.log(" haha org name"+institutionName.value)
 
             console.log(userId)
 
@@ -202,7 +209,7 @@ export default{
             user_type,
             users, icons, target, isOpen, sidebarTarget,
             superAdminMenu, userId, userStore, headTeacher, read_user_information,
-             institutionId, institutionData, username
+             institutionId, institutionData, username, institutionName
         }
 
     }
