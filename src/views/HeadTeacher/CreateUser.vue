@@ -271,7 +271,7 @@ export default{
         }
 
         console.log("user type "+usertype_name.value)
-         if(!firstname.value || !nationalId.value || !lastname.value || !usertype_name.value ||
+         if(!firstname.value || !lastname.value || !usertype_name.value ||
            !dob.value || !gender.value || !email.value){
               Swal.fire({
                   text:"Please fill in all required fields!",

@@ -252,6 +252,8 @@ export default{
         const phonenumber = ref(null)
         const email = ref(null)
         const institution_id = ref(null)
+
+        
         
         const institution = ref([])
         const route = useRoute()
@@ -264,7 +266,7 @@ export default{
         const create_institution_admin = ()=>{
 
           console.log("user type "+usertype_name.value)
-           if(!firstname.value || !nationalId.value || !lastname.value || !usertype_name.value ||
+           if(!firstname.value || !lastname.value || !usertype_name.value ||
              !dob.value || !gender.value || !email.value){
                 Swal.fire({
                     text:"Please fill in all required fields!",
