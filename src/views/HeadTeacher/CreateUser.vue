@@ -11,7 +11,7 @@
     <div class="w-full lg:w-6/12 px-4 mt-2">
       <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
         <h1 class="flex items-center text-xl font-semibold px-4 pt-6 uppercase">
-           Add Institution adminstrator details
+           Add Learner or Teacher details
         </h1>
 
 
