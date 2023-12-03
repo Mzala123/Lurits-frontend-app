@@ -21,19 +21,17 @@ bg-white rounded text-sm  shadow-sm focus:outline-none w-full ease-linear transi
 
 <div v-if="!is_loading">
     <EasyDataTable :headers="headers" :items="learnerList" :search-field="searchField" :search-value="searchValue">
-        <!-- <template #item-action="{ _id, institution_id }">
-
+        <template #item-action="{userDetails }">
             <div class="flex">
-                <router-link :to="'/update_institution/' + _id">
-                    <PencilIcon class="stroke-blue-600 mr-2 h-5 w-5"></PencilIcon>
+                <router-link :to="'/update_user/'+userDetails._id">
+                    <PencilSquareIcon class="stroke-blue-600 mr-2 h-5 w-5"></PencilSquareIcon>
                 </router-link>
 
-                <router-link :to="'/add_institution_admin/' + institution_id">
-                    <UserPlusIcon class="stroke-gray-600 mr-2 h-5 w-5"></UserPlusIcon>
+                <router-link :to="'/assign_class_learner/'+userDetails._id">
+                    <Cog6ToothIcon class="stroke-gray-600 mr-2 h-5 w-5"></Cog6ToothIcon>
                 </router-link>
             </div>
-
-        </template> -->
+        </template>
     </EasyDataTable>
 </div>
 <div v-else class="animate-pulse text-center py-16 text-sm">
@@ -49,12 +47,12 @@ import { ref, onMounted, reactive } from 'vue'
 import axios from 'axios'
 import config from '../../../config'
 import Swal from 'sweetalert2'
-import { DocumentArrowDownIcon, UserPlusIcon, EyeSlashIcon, EyeIcon, PencilIcon, ArchiveBoxArrowDownIcon } from '@heroicons/vue/24/outline';
+import { DocumentArrowDownIcon, UserPlusIcon, EyeSlashIcon, EyeIcon, PencilIcon, Cog6ToothIcon, ArchiveBoxArrowDownIcon, PencilSquareIcon } from '@heroicons/vue/24/outline';
 import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
 
 export default{
-    components:{DocumentArrowDownIcon, UserPlusIcon, EyeSlashIcon, PencilIcon, EyeIcon, ArchiveBoxArrowDownIcon
+    components:{DocumentArrowDownIcon, UserPlusIcon, EyeSlashIcon, PencilIcon, EyeIcon, ArchiveBoxArrowDownIcon, Cog6ToothIcon, PencilSquareIcon
         },
 
     setup(){
@@ -65,6 +63,8 @@ export default{
             let institutionId = ref(null)
             let institutionName = ref(null)
 
+            const userId = ref("")
+
             const headers = ([
               {text: "Learner code", value: "userDetails.username", sortable: true },
               {text: "National Id", value: "learnerDocs.nationalId", sortable: true },
@@ -72,6 +72,7 @@ export default{
               {text: "Lastname", value: "learnerDocs.lastname", sortable: true },
               {text: "Gender", value: "learnerDocs.gender", sortable: true },
               {text: "Place of residence", value: "learnerDocs.place_residence", sortable: true },
+              {text: "Actions", value: "action", sortable: true}
               ]
             )
 
@@ -111,6 +112,7 @@ export default{
                   .then((response)=>{
                      learnerList.value = response.data
                      console.log(learnerList.value)
+                     console.log("user id is "+userId)
                      is_loading.value = false
                   })
             }
@@ -119,7 +121,7 @@ export default{
             return{
                 read_learner_list,
                 learnerList, is_loading, searchValue, searchField, institutionId, headers,
-                exportLearnersList, institutionName
+                exportLearnersList, institutionName, userId
             }
         
     }

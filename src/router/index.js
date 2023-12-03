@@ -14,6 +14,10 @@ import LearnerList from '../views/HeadTeacher/LearnerList.vue'
 import TeacherList from '../views/HeadTeacher/TeacherList.vue'
 import HeadDashboard from '../views/HeadTeacher/HeadDashboard.vue'
 import UserSettings from '../views/HeadTeacher/UserSettings.vue'
+import UpdateUser from '../views/HeadTeacher/UpdateUser.vue'
+
+import AssignClassLearner from '../views/HeadTeacher/AssignClassLearner.vue'
+import AssignClassTeacher from '../views/HeadTeacher/AssignClassTeacher.vue' 
 
 
 const routes = [
@@ -81,6 +85,21 @@ const routes = [
                 path:'/user_settings',
                 name:'user-settings',
                 component: UserSettings
+            },
+            {
+                path:'/update_user/:id',
+                name:'update-user',
+                component:UpdateUser
+            },
+            {
+                path:'/assign_class_learner/:id',
+                name:'assign-class-learner',
+                component: AssignClassLearner
+            },
+            {
+                path:'/assign_class_teacher/:id',
+                name:'assing-class-teacher',
+                component: AssignClassTeacher
             }
 
 

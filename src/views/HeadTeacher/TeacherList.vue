@@ -11,8 +11,7 @@
             </button>
         </div>
         <div class="relative w-96 mb-6">
-            <!-- <label class="block text-gray-600 text-sm font-semibold mb-2">
-    Employee Id</label> -->
+       
             <input type="text" v-model="searchValue" placeholder="Find" class="px-3 py-3 placeholder-black text-gray-700 border border-gray-700
     bg-white rounded text-sm  shadow-sm focus:outline-none w-full ease-linear transition-all duration-150">
         </div>
@@ -21,19 +20,19 @@
     
     <div v-if="!is_loading">
         <EasyDataTable :headers="headers" :items="teacherList" :search-field="searchField" :search-value="searchValue">
-            <!-- <template #item-action="{ _id, institution_id }">
+            <template #item-action="{userDetails}">
     
                 <div class="flex">
-                    <router-link :to="'/update_institution/' + _id">
-                        <PencilIcon class="stroke-blue-600 mr-2 h-5 w-5"></PencilIcon>
+                    <router-link :to="'/update_user/'+userDetails._id">
+                        <PencilSquareIcon class="stroke-blue-600 mr-2 h-5 w-5"></PencilSquareIcon>
                     </router-link>
     
-                    <router-link :to="'/add_institution_admin/' + institution_id">
-                        <UserPlusIcon class="stroke-gray-600 mr-2 h-5 w-5"></UserPlusIcon>
+                    <router-link :to="'/assign_class_teacher/'+userDetails._id">
+                        <Cog6ToothIcon class="stroke-gray-600 mr-2 h-5 w-5"></Cog6ToothIcon>
                     </router-link>
                 </div>
     
-            </template> -->
+            </template>
         </EasyDataTable>
     </div>
     <div v-else class="animate-pulse text-center py-16 text-sm">
@@ -49,12 +48,12 @@
     import axios from 'axios'
     import config from '../../../config'
     import Swal from 'sweetalert2'
-    import { DocumentArrowDownIcon, UserPlusIcon, EyeSlashIcon, EyeIcon, PencilIcon, ArchiveBoxArrowDownIcon } from '@heroicons/vue/24/outline';
+    import { DocumentArrowDownIcon, UserPlusIcon,PencilSquareIcon, Cog6ToothIcon,EyeSlashIcon, EyeIcon, PencilIcon, ArchiveBoxArrowDownIcon } from '@heroicons/vue/24/outline';
     import jsPDF from 'jspdf'
     import autoTable from 'jspdf-autotable'
     
     export default{
-        components:{DocumentArrowDownIcon, UserPlusIcon, EyeSlashIcon, PencilIcon, EyeIcon, ArchiveBoxArrowDownIcon
+        components:{DocumentArrowDownIcon, Cog6ToothIcon,UserPlusIcon,PencilSquareIcon ,EyeSlashIcon, PencilIcon, EyeIcon, ArchiveBoxArrowDownIcon
             },
     
         setup(){
@@ -63,6 +62,7 @@
                 const searchField = ref("");
                 const searchValue = ref("");
                 let institutionId = ref(null)
+                let institutionName = ref(null)
     
                 const headers = ([
                   {text: "Username", value: "userDetails.username", sortable: true },
@@ -71,6 +71,7 @@
                   {text: "Lastname", value: "learnerDocs.lastname", sortable: true },
                   {text: "Gender", value: "learnerDocs.gender", sortable: true },
                   {text: "Place of residence", value: "learnerDocs.place_residence", sortable: true },
+                  {text: "Actions", value: "action", sortable: true}
                   ]
                 )
 
@@ -78,14 +79,29 @@
                    const doc = new jsPDF()
                    const rows = []
                    teacherList.value.forEach(list=>{
-                     const temp = [list.userDetails.username, list.learnerDocs.nationalId, ]
+                     const temp = [list.userDetails.username, list.learnerDocs.nationalId, list.learnerDocs.firstname+' '+list.learnerDocs.lastname,
+                     list.learnerDocs.gender, list.learnerDocs.place_residence]
+                      rows.push(temp)
                    })
+                   doc.text(institutionName+" Institution",10, 10)
+                    doc.text('All learners list', 10, 20)
+                    doc.line(0,35,400,35)
+                    autoTable(doc, {
+                        head: [['Username', 'National Id', 'Name of teacher', 'Gemder', 'Place of residence']],
+                        margin:{top:50},
+                        body:[...rows]
+                    })
+                   doc.save(institutionName+' Teachers list.pdf')
                 }
+
 
     
     
                 onMounted(()=>{
                   institutionId = sessionStorage.getItem('institutionId')
+                  institutionName = sessionStorage.getItem('institution_name')
+                    console.log("org id is "+institutionId)
+                    console.log("org name "+institutionName)
                   console.log("org id is "+institutionId)
                   read_teacher_list()
     
@@ -104,7 +120,7 @@
                 
                 return{
                     read_teacher_list,
-                    is_loading, searchValue, searchField, institutionId, headers, teacherList,
+                    is_loading, searchValue, searchField, institutionId, headers, teacherList,institutionName,
                     exportTeacherList
                 }
             
