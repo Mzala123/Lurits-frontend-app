@@ -173,6 +173,7 @@ export default{
 
         const headTeacher = ref([
             {title:'Dashboard', icon:HomeIcon, name:'head-dashboard'},
+            {title:'Learners unassigned class', icon:QueueListIcon, name:'unassigned-learner-list'},
             {title:'Learners list', icon:QueueListIcon, name:'learner-list'},
             {title:'Teachers  list', icon:QueueListIcon, name:'teacher-list'},
           ]

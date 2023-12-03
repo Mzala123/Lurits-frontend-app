@@ -18,6 +18,7 @@ import UpdateUser from '../views/HeadTeacher/UpdateUser.vue'
 
 import AssignClassLearner from '../views/HeadTeacher/AssignClassLearner.vue'
 import AssignClassTeacher from '../views/HeadTeacher/AssignClassTeacher.vue' 
+import UnassignedClassLearner from '../views/HeadTeacher/UnassignedClassLearner.vue'
 
 
 const routes = [
@@ -72,6 +73,11 @@ const routes = [
                 component: LearnerList
             },
             {
+                path:'/unassigned_learner_list',
+                name:'unassigned-learner-list',
+                component: UnassignedClassLearner
+            },
+            {
                 path:'/teacher_list',
                 name:'teacher-list',
                 component: TeacherList
@@ -100,6 +106,11 @@ const routes = [
                 path:'/assign_class_teacher/:id',
                 name:'assing-class-teacher',
                 component: AssignClassTeacher
+            },
+            {
+                path:'/unassigned_learner_list',
+                name:'unassigned_learner_list',
+                component: UnassignedClassLearner
             }
 
 
