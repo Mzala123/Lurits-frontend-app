@@ -63,7 +63,7 @@ export default{
             let institutionName = ref(null)
 
             const userId = ref("")
-
+            
             const headers = ([
               {text: "Learner code", value: "userDetails.username", sortable: true },
               {text: "National Id", value: "learnerDocs.nationalId", sortable: true },
@@ -71,6 +71,7 @@ export default{
               {text: "Lastname", value: "learnerDocs.lastname", sortable: true },
               {text: "Gender", value: "learnerDocs.gender", sortable: true },
               {text: "Place of residence", value: "learnerDocs.place_residence", sortable: true },
+              {text: "Class level", value: "classDetails.className", sortable: true },
               {text: "Actions", value: "action", sortable: true}
               ]
             )
