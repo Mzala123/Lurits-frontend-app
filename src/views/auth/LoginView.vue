@@ -101,7 +101,7 @@ export default{
                       } else if(usertype_name === 'Teacher'){
                          router.push({path:'/teacher_learner_list'})
                       } else if(usertype_name === 'Learner'){
-
+                         router.push({path:'/learner_dashboard'})
                       }
 
 

@@ -20,7 +20,7 @@
     
     <div v-if="!is_loading">
         <EasyDataTable :headers="headers" :items="learnerList" :search-field="searchField" :search-value="searchValue">
-            <template #item-action="{userDetails }">
+            <template #item-action="{userDetails}">
                 <div class="flex">
                     <router-link :to="'/student_grade/'+userDetails._id+'/'+userDetails.classId">
 
@@ -61,10 +61,11 @@
             },
     
         setup(){
-            const is_loading = ref(false)
+               const is_loading = ref(false)
                 const learnerList = ref([])
                 const searchField = ref("");
                 const searchValue = ref("");
+
                 let institutionId = ref(null)
                 let institutionName = ref(null)
     

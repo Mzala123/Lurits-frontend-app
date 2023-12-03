@@ -72,6 +72,20 @@
                         </div>
                 </div>
 
+                <div v-show="user_type === 'Learner'" class="">
+                  
+                    <div class="mt-6 border-t-2">
+                            <router-link @click="name = item.name" :class="`flex items-center focus:outline-none hover:text-emerald-600 hover:border-l-2 border-emerald-500 px-8 py-2 w-full 
+                                hover:bg-emerald-50 mr-auto mb-1 ${name === item.name ? 'text-emerald-600  bg-lighter border-l-2 border-emerald-600' : '' }`"
+                                v-for="item of learnerMenu" 
+                                :key="item.name" 
+                                v-bind:to="{name: item.name}">
+                                    <component :is="item.icon" class="h-6 w-6 mr-4 text-left"></component>
+                                    <p class="text-sm font-normal text-left">{{ item.title }}</p>
+                            </router-link> 
+                        </div>
+                </div>
+
 
 
           </div>
@@ -203,6 +217,12 @@ export default{
         const teacherMenu = ref([
             // {title:'Dashboard', icon:HomeIcon, name:'teacher-dashboard'},
             {title:'Learners list', icon:QueueListIcon, name:'teacher-learner-list'},
+            {title:'Graded learners list', icon: QueueListIcon, name:'grade-student-list'}
+        ])
+
+        const learnerMenu = ref([
+            {title:'Learner dashboard', icon:HomeIcon, name:'learner-dashboard'},
+            {title:'Learner report grade', icon:QueueListIcon, name:'learner-grades'},
         ])
 
         const read_user_information =()=>{
@@ -236,7 +256,7 @@ export default{
             user_type,
             users, icons, target, isOpen, sidebarTarget,
             superAdminMenu, userId, userStore, headTeacher, read_user_information,
-             institutionId, institutionData, username, institutionName, teacherMenu
+             institutionId, institutionData, username, institutionName, teacherMenu, learnerMenu
         }
 
     }
