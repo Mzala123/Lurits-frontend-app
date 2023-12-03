@@ -53,6 +53,27 @@
 
                 </div>
 
+                <div v-show="user_type === 'Teacher'" class="">
+                    <!-- <div class="ml-3 flex flex-row mt-5 px-4 ">
+                            <router-link :to="'/create_user'" class="rounded-2xl text-white flex font-semibold bg-emerald-700 hover:bg-emerald-600 outline-1 hover:shadow-md px-2 py-2 justify-center items-center w-56">
+                                <PlusIcon class="h-6 w-6 mr-2"></PlusIcon>
+                                <p class="block text-sm">User</p>
+                            </router-link>
+                    </div> -->
+                    <div class="mt-6 border-t-2">
+                            <router-link @click="name = item.name" :class="`flex items-center focus:outline-none hover:text-emerald-600 hover:border-l-2 border-emerald-500 px-8 py-2 w-full 
+                                hover:bg-emerald-50 mr-auto mb-1 ${name === item.name ? 'text-emerald-600  bg-lighter border-l-2 border-emerald-600' : '' }`"
+                                v-for="item of teacherMenu" 
+                                :key="item.name" 
+                                v-bind:to="{name: item.name}">
+                                    <component :is="item.icon" class="h-6 w-6 mr-4 text-left"></component>
+                                    <p class="text-sm font-normal text-left">{{ item.title }}</p>
+                            </router-link> 
+                        </div>
+                </div>
+
+
+
           </div>
       </div>
 
@@ -179,6 +200,11 @@ export default{
           ]
         )
 
+        const teacherMenu = ref([
+            // {title:'Dashboard', icon:HomeIcon, name:'teacher-dashboard'},
+            {title:'Learners list', icon:QueueListIcon, name:'teacher-learner-list'},
+        ])
+
         const read_user_information =()=>{
              axios
              .get(`${config.API_URL}/read_one_user_details/${userId}`)
@@ -210,7 +236,7 @@ export default{
             user_type,
             users, icons, target, isOpen, sidebarTarget,
             superAdminMenu, userId, userStore, headTeacher, read_user_information,
-             institutionId, institutionData, username, institutionName
+             institutionId, institutionData, username, institutionName, teacherMenu
         }
 
     }

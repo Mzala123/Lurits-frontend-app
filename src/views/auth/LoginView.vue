@@ -16,7 +16,7 @@
                         <label class="block text-blueGray-600 text-sm mb-1">
                           Enter password
                        </label>
-                        <input v-model="password" class="w-full border border-gray-500 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded-sm text-sm shadow focus:outline-none" type="password"/>
+                        <input v-model="password" @keyup.enter="login" class="w-full border border-gray-500 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded-sm text-sm shadow focus:outline-none" type="password"/>
                    </div>
                    <div class="-m-2">
                         <a class="font-bold text-emerald-600 hover:text-blue hover:underline p-2 rounded-full" href="#">Forgot password?</a>
@@ -98,8 +98,10 @@ export default{
                           router.push({path:"/super_admin_dashboard"})
                       } else if(usertype_name === 'Head Teacher'){
                           router.push({path:'/head_dashboard'})
-                      } else if(usertype_name === ''){
-                        
+                      } else if(usertype_name === 'Teacher'){
+                         router.push({path:'/teacher_learner_list'})
+                      } else if(usertype_name === 'Learner'){
+
                       }
 
 

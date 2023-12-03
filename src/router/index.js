@@ -20,6 +20,9 @@ import AssignClassLearner from '../views/HeadTeacher/AssignClassLearner.vue'
 import AssignClassTeacher from '../views/HeadTeacher/AssignClassTeacher.vue' 
 import UnassignedClassLearner from '../views/HeadTeacher/UnassignedClassLearner.vue'
 
+import TeacherLearnerList from '../views/Teacher/TeacherLearnerList.vue'
+import StudentGrade from '../views/Teacher/StudentGrade.vue'
+
 
 const routes = [
     {
@@ -111,9 +114,17 @@ const routes = [
                 path:'/unassigned_learner_list',
                 name:'unassigned_learner_list',
                 component: UnassignedClassLearner
+            },
+            {
+                path:'/teacher_learner_list',
+                name:'teacher-learner-list',
+                component: TeacherLearnerList
+            },
+            {
+                path:'/student_grade/:userId/:classId',
+                name:'student-grade',
+                component:StudentGrade
             }
-
-
 
         ]
     }
