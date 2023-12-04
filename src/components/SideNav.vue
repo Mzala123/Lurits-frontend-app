@@ -215,7 +215,7 @@ export default{
         )
 
         const teacherMenu = ref([
-            // {title:'Dashboard', icon:HomeIcon, name:'teacher-dashboard'},
+            {title:'Attendance register', icon:HomeIcon, name:'attendance-register'},
             {title:'Learners list', icon:QueueListIcon, name:'teacher-learner-list'},
             {title:'Graded learners list', icon: QueueListIcon, name:'grade-student-list'}
         ])

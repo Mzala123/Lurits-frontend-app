@@ -23,6 +23,7 @@ import UnassignedClassLearner from '../views/HeadTeacher/UnassignedClassLearner.
 import TeacherLearnerList from '../views/Teacher/TeacherLearnerList.vue'
 import StudentGrade from '../views/Teacher/StudentGrade.vue'
 import GradedStudent from '../views/Teacher/GradedStudent.vue'
+import AttendanceRegister from '../views/Teacher/AttendanceRegister.vue'
 
 import LearnerGrades from '../views/Learner/LearnerGrades.vue'
 import LearnerDashboard from '../views/Learner/LearnerDashboard.vue'
@@ -143,6 +144,11 @@ const routes = [
                 path:'/learner_dashboard',
                 name:'learner-dashboard',
                 component: LearnerDashboard
+            },
+            {
+                path:'/attendance_register',
+                name:'attendance-register',
+                component: AttendanceRegister
             }
 
         ]
