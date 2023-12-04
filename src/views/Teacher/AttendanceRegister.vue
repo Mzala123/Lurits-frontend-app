@@ -57,9 +57,8 @@
                 Submit Attendance
                 </button>
 
-
-
    </div>
+
 </template>
 
 <script>
@@ -122,11 +121,11 @@ export default{
                             text:response.data.message,
                             icon:"success"
                            })
-                            //    .then((ok)=>{
-                            //       if(ok){
-                            //         router.push({path:"/teacher_learner_list"})
-                            //       }     
-                            //    })
+                               .then((ok)=>{
+                                  if(ok){
+                                    router.push({path:"/attendance_report"})
+                                  }     
+                               })
                            }
                        }).catch((error)=>{
                         
