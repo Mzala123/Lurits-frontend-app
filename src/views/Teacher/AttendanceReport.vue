@@ -100,7 +100,7 @@ export default{
                  .get(`${config.API_URL}/attendance_list/${institutionId}`)
                  .then((response)=>{
                     attendanceList.value = response.data
-                    details.value = attendanceList[0].value.details
+                    // details.value = attendanceList[0].value.details
                     console.log(attendanceList.value)
                     console.log(details.value)
                  })

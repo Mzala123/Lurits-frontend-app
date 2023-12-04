@@ -69,6 +69,8 @@ import Swal from 'sweetalert2'
 import { DocumentArrowDownIcon, UserPlusIcon, PlusIcon, EyeSlashIcon, EyeIcon, PencilIcon, Cog6ToothIcon, ArchiveBoxArrowDownIcon, PencilSquareIcon, PlusCircleIcon } from '@heroicons/vue/24/outline';
 import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
+import router from "../../router";
+import { useRoute } from 'vue-router';
 
 export default{
 
@@ -104,6 +106,8 @@ export default{
         }
 
         const submitAttendance = ()=>{
+            console.log(learnerList.value.length)
+
             learnerList.value.forEach((learner, index) => {
                      
                      axios
@@ -131,8 +135,6 @@ export default{
                         
                        })
                        
-       
-                   
                 });
 
         }

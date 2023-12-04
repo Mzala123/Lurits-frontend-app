@@ -313,6 +313,12 @@ export default{
                               }
                            }
                       })
+                  }else if(response.status === 200){
+                       Swal.fire({
+                          title:"Information",
+                          text: response.data.message,
+                          icon: "success"
+                      })
                   }
               }).catch((error)=>{
                   loading.value = false

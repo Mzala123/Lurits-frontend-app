@@ -303,7 +303,13 @@ export default{
                                 router.push({path:"/institution_admin_list"})
                              }
                         })
-                    }
+                    }else if(response.status === 200){
+                       Swal.fire({
+                          title:"Information",
+                          text: response.data.message,
+                          icon: "success"
+                      })
+                  }
                 }).catch((error)=>{
                     loading.value = false
                     const{status} = error.response
