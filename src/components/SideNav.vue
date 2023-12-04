@@ -163,7 +163,7 @@
 <script>
 
 import {ref, onMounted} from 'vue'
-import { QuestionMarkCircleIcon, Cog6ToothIcon,QueueListIcon,UserCircleIcon,ArrowLeftIcon,HomeIcon, Bars3Icon, PlusCircleIcon, PlusIcon } from '@heroicons/vue/24/outline';
+import { QuestionMarkCircleIcon, Cog6ToothIcon,QueueListIcon,UserCircleIcon,ArrowLeftIcon,HomeIcon, DocumentChartBarIcon, Bars3Icon, PlusCircleIcon, PlusIcon } from '@heroicons/vue/24/outline';
 import { onClickOutside } from '@vueuse/core'
 //import {QuestionMarkCircleIcon, Cog6ToothIcon} from  '@heroicons/vue/20/outline'
 import router from '../router';
@@ -173,7 +173,7 @@ import config from '../../config'
 
 export default{
     components:{
-       QuestionMarkCircleIcon,HomeIcon, UserCircleIcon,Cog6ToothIcon,QueueListIcon, ArrowLeftIcon, Bars3Icon, PlusCircleIcon, PlusIcon
+       QuestionMarkCircleIcon,HomeIcon, UserCircleIcon,Cog6ToothIcon,QueueListIcon, ArrowLeftIcon, DocumentChartBarIcon,Bars3Icon, PlusCircleIcon, PlusIcon
     },
     setup(){
 
@@ -215,7 +215,8 @@ export default{
         )
 
         const teacherMenu = ref([
-            {title:'Attendance register', icon:HomeIcon, name:'attendance-register'},
+            {title:'Attendance report', icon:DocumentChartBarIcon, name:'attendance-report'},
+            {title:'Attendance register', icon:PlusIcon, name:'attendance-register'},
             {title:'Learners list', icon:QueueListIcon, name:'teacher-learner-list'},
             {title:'Graded learners list', icon: QueueListIcon, name:'grade-student-list'}
         ])
