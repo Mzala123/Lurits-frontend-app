@@ -95,7 +95,7 @@ export default{
                      console.log("the userid is "+sessionStorage.getItem("userid"))
 
                       if(usertype_name ===  'Super Admin'){
-                          router.push({path:"/super_admin_dashboard"})
+                          router.push({path:"/institution_list"})
                       } else if(usertype_name === 'Head Teacher'){
                           router.push({path:'/head_dashboard'})
                       } else if(usertype_name === 'Teacher'){
