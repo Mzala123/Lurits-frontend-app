@@ -200,7 +200,7 @@ export default{
 
         const icons = [{name:'icon', signout:ArrowLeftIcon}]
         const superAdminMenu = ref([
-            {title:'Dashboard', icon:HomeIcon, name:'super-admin-dashboard'},
+            // {title:'Dashboard', icon:HomeIcon, name:'super-admin-dashboard'},
             {title:'Institutions List', icon:QueueListIcon, name:'institution-list'},
             {title:'Institution Admins List', icon:UserCircleIcon, name:'institution-admin-list'},
             
